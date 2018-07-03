@@ -6,11 +6,11 @@ public class SignUpViewModel extends ViewModel {
 
     private String mUserEmail, mPassword;
 
-    public void saveUserEmail(CharSequence s, int start, int before, int count) {
+    public void saveUserEmail(CharSequence s) {
         mUserEmail = s.toString();
     }
 
-    public void saveUserPassword(CharSequence s, int start, int before, int count) {
+    public void saveUserPassword(CharSequence s) {
         mPassword = s.toString();
     }
 
