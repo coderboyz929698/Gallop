@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Gallop</string>
+    <string name="app_tagline">Learning, in a snap!</string>
+    <string name="sign_in_label">Login to your account</string>
+    <string name="email_address_hint">Email Address</string>
+    <string name="password_hint">Password</string>
+    <string name="log_in_label">Sign in</string>
+    <string name="or_label">Or</string>
+    <string name="create_account_label">Create Account</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="error_email">Check email address and try again</string>
+    <string name="error_password">Check password and try again</string>
+</resources>

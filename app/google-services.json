@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "265168723825",
+    "firebase_url": "https://gallop-43668.firebaseio.com",
+    "project_id": "gallop-43668",
+    "storage_bucket": "gallop-43668.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265168723825:android:cb80968b741bab2d",
+        "android_client_info": {
+          "package_name": "io.github.umangjpatel.gallop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265168723825-kjo5p47lvv0h5a20hb3bheomm21g0v9j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.umangjpatel.gallop",
+            "certificate_hash": "39583999f69833ab1cc7ed8657c74088c0176e82"
+          }
+        },
+        {
+          "client_id": "265168723825-agremoatj02ddap9vp5qacqrljoupfue.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8PNpd5oIkZWTIl87awRThuXiZnEIOmC8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "265168723825-agremoatj02ddap9vp5qacqrljoupfue.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
