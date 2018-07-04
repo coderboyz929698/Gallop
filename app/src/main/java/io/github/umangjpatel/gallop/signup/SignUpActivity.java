@@ -1,6 +1,5 @@
 package io.github.umangjpatel.gallop.signup;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +15,6 @@ import io.github.umangjpatel.gallop.main.MainActivity;
 public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignupBinding mSignUpBinding;
-    private SignUpViewModel mSignUpViewModel;
 
     private FirebaseAuth mAuth;
 
@@ -25,8 +23,6 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mSignUpBinding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
         mSignUpBinding.setLifecycleOwner(this);
-        mSignUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel.class);
-        mSignUpBinding.setSignUpViewModel(mSignUpViewModel);
         mAuth = FirebaseAuth.getInstance();
     }
 
@@ -37,7 +33,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void startUserLogin(View view) {
-        mAuth.signInWithEmailAndPassword(mSignUpViewModel.getUserEmail(), mSignUpViewModel.getPassword())
+        mAuth.signInWithEmailAndPassword(mSignUpBinding.emailAddressEditText.getText().toString(),
+                mSignUpBinding.passwordEditText.getText().toString())
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful())
                         updateUI(mAuth.getCurrentUser());
@@ -54,7 +51,8 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     public void createUserAccount(View view) {
-        mAuth.createUserWithEmailAndPassword(mSignUpViewModel.getUserEmail(), mSignUpViewModel.getPassword())
+        mAuth.createUserWithEmailAndPassword(mSignUpBinding.emailAddressEditText.getText().toString(),
+                mSignUpBinding.passwordEditText.getText().toString())
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful())
                         updateUI(mAuth.getCurrentUser());
