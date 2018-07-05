@@ -14,7 +14,7 @@ public class SignUpViewModel extends AndroidViewModel {
 
     public SignUpViewModel(@NonNull Application application) {
         super(application);
-        mUserInfoRepository = new UserInfoRepository();
+        mUserInfoRepository = UserInfoRepository.getInstance();
     }
 
     public void registerUser(FirebaseUser currentUser) {

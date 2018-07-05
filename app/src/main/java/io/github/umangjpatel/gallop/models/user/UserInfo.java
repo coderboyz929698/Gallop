@@ -2,16 +2,16 @@ package io.github.umangjpatel.gallop.models.user;
 
 public class UserInfo {
 
-    private String mDisplayName, mEmailAddress, mPhoneNumber;
+    private String mDisplayName, mEmailAddress, mPhotoURL;
 
     public UserInfo() {
         //Empty constructor required
     }
 
-    UserInfo(String displayName, String emailAddress, String phoneNumber) {
+    UserInfo(String displayName, String emailAddress, String photoURL) {
         mDisplayName = displayName;
         mEmailAddress = emailAddress;
-        mPhoneNumber = phoneNumber;
+        mPhotoURL = photoURL;
     }
 
     public String getDisplayName() {
@@ -22,7 +22,19 @@ public class UserInfo {
         return mEmailAddress;
     }
 
-    public String getPhoneNumber() {
-        return mPhoneNumber;
+    public String getPhotoURL() {
+        return mPhotoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        mPhotoURL = photoURL;
+    }
+
+    public void setDisplayName(String displayName) {
+        mDisplayName = displayName;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        mEmailAddress = emailAddress;
     }
 }

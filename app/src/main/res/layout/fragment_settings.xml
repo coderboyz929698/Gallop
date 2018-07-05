@@ -25,30 +25,43 @@
             android:id="@+id/user_display_name_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="@string/title_settings"
-            android:textAppearance="?android:textAppearanceLarge"
+            android:maxLines="1"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/user_profile_image"
+            app:layout_constraintTop_toTopOf="@+id/user_profile_image"
+            tools:text="@string/title_settings" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/user_email_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="@+id/user_profile_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/user_profile_image"
-            app:layout_constraintTop_toTopOf="@+id/user_profile_image" />
-
+            app:layout_constraintTop_toBottomOf="@+id/user_display_name_text_view"
+            tools:text="@string/title_settings" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/user_profile_edit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginEnd="16dp"
             android:background="?android:selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
             app:backgroundTint="@color/buttonColor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/user_profile_image"
+            app:layout_constraintEnd_toStartOf="@+id/user_email_text_view"
             app:srcCompat="@drawable/ic_edit" />
 
     </android.support.constraint.ConstraintLayout>

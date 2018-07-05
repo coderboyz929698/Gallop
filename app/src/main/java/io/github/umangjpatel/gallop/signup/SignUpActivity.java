@@ -60,8 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         updateUI(mAuth.getCurrentUser());
                         mSignUpViewModel.registerUser(mAuth.getCurrentUser());
-                    }
-                    else
+                    } else
                         showErrorMessages();
                 });
     }

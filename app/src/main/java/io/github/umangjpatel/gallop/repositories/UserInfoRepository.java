@@ -1,7 +1,6 @@
 package io.github.umangjpatel.gallop.repositories;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import android.support.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -12,33 +11,38 @@ import io.github.umangjpatel.gallop.models.user.UserInfoBuilder;
 
 public class UserInfoRepository {
 
-    private LiveData<UserInfo> mUserInfoLiveData;
+    private static UserInfoRepository sUserInfoRepository;
 
     private DatabaseReference mDatabase;
 
-    public UserInfoRepository() {
-        mUserInfoLiveData = new MutableLiveData<>();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+    private UserInfoRepository() {
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
+    }
+
+    public static UserInfoRepository getInstance() {
+        if (sUserInfoRepository == null)
+            sUserInfoRepository = new UserInfoRepository();
+        return sUserInfoRepository;
     }
 
     public void addUser(FirebaseUser currentUser) {
         UserInfo userInfo = getUserDetails(currentUser);
         mDatabase
-                .child("users")
                 .child(currentUser.getUid())
                 .setValue(userInfo);
-
     }
 
-    private UserInfo getUserDetails(FirebaseUser currentUser) {
+    private UserInfo getUserDetails(@NonNull FirebaseUser currentUser) {
         return new UserInfoBuilder()
-                .setDisplayName(currentUser.getDisplayName())
                 .setEmailAddress(currentUser.getEmail())
-                .setPhoneNumber(currentUser.getPhoneNumber())
+                .setPhotoURL("")
                 .createUserInfo();
     }
 
-    public LiveData<UserInfo> getUserInfoLiveData() {
-        return mUserInfoLiveData;
+    public UserInfo readUserFromDatabase() {
+        return new UserInfoBuilder()
+                .setEmailAddress("umangpatel1947@gmail.com")
+                .setPhotoURL("")
+                .createUserInfo();
     }
 }

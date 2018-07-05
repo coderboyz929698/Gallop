@@ -1,20 +1,23 @@
 package io.github.umangjpatel.gallop.settings;
 
 
+import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import io.github.umangjpatel.gallop.R;
+import io.github.umangjpatel.gallop.databinding.FragmentSettingsBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SettingsFragment extends Fragment {
 
+    private FragmentSettingsBinding mSettingsBinding;
+    private SettingsViewModel mSettingsViewModel;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -29,7 +32,18 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        mSettingsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false);
+        mSettingsViewModel = ViewModelProviders.of(this).get(SettingsViewModel.class);
+        mSettingsViewModel.fetchUserData();
+        mSettingsViewModel.getUserInfoLiveData().observe(this, userInfo -> {
+            if (userInfo != null) {
+                Log.i("details", userInfo.getDisplayName());
+                Log.i("details", userInfo.getEmailAddress());
+                Log.i("details", userInfo.getPhotoURL() + "this is url");
+                mSettingsBinding.userDisplayNameTextView.setText(userInfo.getDisplayName());
+                mSettingsBinding.userEmailTextView.setText(userInfo.getEmailAddress());
+            }
+        });
+        return mSettingsBinding.getRoot();
     }
-
 }
