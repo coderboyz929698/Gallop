@@ -29,21 +29,19 @@ public class UserInfoRepository {
         UserInfo userInfo = getUserDetails(currentUser);
         mDatabase
                 .child("users")
-                .child(currentUser.getUid())
+                .child(userInfo.getDisplayName())
                 .setValue(userInfo);
     }
 
     private UserInfo getUserDetails(@NonNull FirebaseUser currentUser) {
         return new UserInfoBuilder()
                 .setEmailAddress(currentUser.getEmail())
-                .setPhotoURL("none")
                 .createUserInfo();
     }
 
-    public UserInfo readUserFromDatabase() {
+    public UserInfo readUserFromDatabase(@NonNull FirebaseUser currentUser) {
         return new UserInfoBuilder()
-                .setEmailAddress("umangpatel1947@gmail.com")
-                .setPhotoURL("")
+                .setEmailAddress(currentUser.getEmail())
                 .createUserInfo();
     }
 }

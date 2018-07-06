@@ -2,7 +2,7 @@ package io.github.umangjpatel.gallop.models.user;
 
 public class UserInfoBuilder {
 
-    private String mDisplayName, mEmailAddress, mPhotoURL;
+    private String mDisplayName, mEmailAddress;
 
     private void setDisplayName(String displayName) {
         mDisplayName = displayName;
@@ -14,13 +14,8 @@ public class UserInfoBuilder {
         return this;
     }
 
-    public UserInfoBuilder setPhotoURL(String photoURL) {
-        mPhotoURL = photoURL;
-        return this;
-    }
-
     public UserInfo createUserInfo() {
-        return new UserInfo(mDisplayName, mEmailAddress, mPhotoURL);
+        return new UserInfo(mDisplayName, mEmailAddress);
     }
 
 }
