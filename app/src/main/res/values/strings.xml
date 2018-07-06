@@ -15,4 +15,6 @@
     <string name="error_email">Check email address and try again</string>
     <string name="error_password">Check password and try again</string>
     <string name="authentication_failed_message">Authentication Failed</string>
+    <string name="empty_input_field">%1$s cannot be empty</string>
+    <string name="incorrect_input_field">%1$s is incorrect</string>
 </resources>

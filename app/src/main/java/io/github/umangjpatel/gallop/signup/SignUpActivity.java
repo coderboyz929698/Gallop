@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +29,7 @@ public class SignUpActivity extends AppCompatActivity {
         mSignUpBinding.setLifecycleOwner(this);
         mSignUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel.class);
         mAuth = FirebaseAuth.getInstance();
+        checkDataEntered();
     }
 
     @Override
@@ -36,33 +39,70 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void startUserLogin(View view) {
-        mAuth.signInWithEmailAndPassword(mSignUpBinding.emailAddressEditText.getText().toString(),
-                mSignUpBinding.passwordEditText.getText().toString())
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful())
-                        updateUI(mAuth.getCurrentUser());
-                    else
-                        showErrorMessages();
-                });
+        if (checkDataEntered())
+            mAuth.signInWithEmailAndPassword(mSignUpBinding.emailAddressEditText.getText().toString(),
+                    mSignUpBinding.passwordEditText.getText().toString())
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful())
+                            updateUI(mAuth.getCurrentUser());
+                        else
+                            showErrorMessages();
+                    });
+    }
+
+    public void createUserAccount(View view) {
+        if (checkDataEntered())
+            mAuth.createUserWithEmailAndPassword(mSignUpBinding.emailAddressEditText.getText().toString(),
+                    mSignUpBinding.passwordEditText.getText().toString())
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            updateUI(mAuth.getCurrentUser());
+                            mSignUpViewModel.registerUser(mAuth.getCurrentUser());
+                        } else
+                            showErrorMessages();
+                    });
+    }
+
+    private boolean checkDataEntered() {
+        if (isEmpty(mSignUpBinding.emailAddressEditText.getText().toString())) {
+            setEmailInputError(getResources().getString(R.string.empty_input_field,
+                    getResources().getString(R.string.email_address_hint)));
+            return false;
+        }
+        if (isEmpty(mSignUpBinding.passwordEditText.getText().toString())) {
+            setPasswordInputError(getResources().getString(R.string.empty_input_field,
+                    getResources().getString(R.string.password_hint)));
+            return false;
+        }
+        if (!isEmail()) {
+            setEmailInputError(getResources().getString(R.string.incorrect_input_field,
+                    getResources().getString(R.string.password_hint)));
+            return false;
+        } else
+            return true;
+    }
+
+    private void setPasswordInputError(String errorMessage) {
+        mSignUpBinding.passwordInputLayout.setError(errorMessage);
+    }
+
+    private void setEmailInputError(String errorMessage) {
+        mSignUpBinding.emailAddressInputLayout.setError(errorMessage);
+    }
+
+    private boolean isEmail() {
+        String email = mSignUpBinding.emailAddressEditText.getText().toString();
+        return (!isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+    }
+
+    private boolean isEmpty(CharSequence charSequence) {
+        return TextUtils.isEmpty(charSequence);
     }
 
     private void showErrorMessages() {
-        mSignUpBinding.emailAddressInputLayout.setError(getResources().getString(R.string.error_email));
-        mSignUpBinding.passwordInputLayout.setError(getResources().getString(R.string.error_password));
+        setEmailInputError(getResources().getString(R.string.error_email));
+        setPasswordInputError(getResources().getString(R.string.error_password));
         mSignUpBinding.passwordEditText.setText(null);
-    }
-
-
-    public void createUserAccount(View view) {
-        mAuth.createUserWithEmailAndPassword(mSignUpBinding.emailAddressEditText.getText().toString(),
-                mSignUpBinding.passwordEditText.getText().toString())
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        updateUI(mAuth.getCurrentUser());
-                        mSignUpViewModel.registerUser(mAuth.getCurrentUser());
-                    } else
-                        showErrorMessages();
-                });
     }
 
     private void updateUI(FirebaseUser currentUser) {
