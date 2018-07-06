@@ -16,7 +16,7 @@ public class UserInfoRepository {
     private DatabaseReference mDatabase;
 
     private UserInfoRepository() {
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     public static UserInfoRepository getInstance() {
@@ -28,6 +28,7 @@ public class UserInfoRepository {
     public void addUser(FirebaseUser currentUser) {
         UserInfo userInfo = getUserDetails(currentUser);
         mDatabase
+                .child("users")
                 .child(currentUser.getUid())
                 .setValue(userInfo);
     }
@@ -35,7 +36,7 @@ public class UserInfoRepository {
     private UserInfo getUserDetails(@NonNull FirebaseUser currentUser) {
         return new UserInfoBuilder()
                 .setEmailAddress(currentUser.getEmail())
-                .setPhotoURL("")
+                .setPhotoURL("none")
                 .createUserInfo();
     }
 
