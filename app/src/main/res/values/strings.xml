@@ -17,4 +17,6 @@
     <string name="authentication_failed_message">Authentication Failed</string>
     <string name="empty_input_field">%1$s cannot be empty</string>
     <string name="incorrect_input_field">%1$s is incorrect</string>
+    <string name="course_code_placeholder">ML-101</string>
+    <string name="course_title_placeholder">Intro to Machine Learning</string>
 </resources>
