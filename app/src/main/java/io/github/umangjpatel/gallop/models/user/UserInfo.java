@@ -20,12 +20,4 @@ public class UserInfo {
     public String getEmailAddress() {
         return mEmailAddress;
     }
-
-    public void setDisplayName(String displayName) {
-        mDisplayName = displayName;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        mEmailAddress = emailAddress;
-    }
 }
