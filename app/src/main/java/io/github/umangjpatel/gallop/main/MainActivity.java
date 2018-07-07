@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
 import io.github.umangjpatel.gallop.R;
@@ -14,30 +15,28 @@ import io.github.umangjpatel.gallop.dashboard.DashboardFragment;
 import io.github.umangjpatel.gallop.databinding.ActivityMainBinding;
 import io.github.umangjpatel.gallop.quizzes.QuizzesFragment;
 import io.github.umangjpatel.gallop.settings.SettingsFragment;
-import io.github.umangjpatel.gallop.utils.adapters.viewpager.BottomBarAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding mMainBinding;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
-        int position = 0;
+        Fragment fragment = null;
         switch (item.getItemId()) {
             case R.id.navigation_dashboard:
-                position = 0;
+                fragment = DashboardFragment.newInstance();
                 break;
             case R.id.navigation_catalog:
-                position = 1;
+                fragment = CatalogFragment.newInstance();
                 break;
             case R.id.navigation_quizzes:
-                position = 2;
+                fragment = QuizzesFragment.newInstance();
                 break;
             case R.id.navigation_settings:
-                position = 3;
+                fragment = SettingsFragment.newInstance();
                 break;
         }
-        mMainBinding.fragmentViewPager.setCurrentItem(position, true);
-        return true;
+        return loadFragment(fragment);
     };
 
 
@@ -46,17 +45,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setupBinding();
         setupNavigation();
-        setupViewPager();
     }
 
-    private void setupViewPager() {
-        mMainBinding.fragmentViewPager.setPagingEnabled(false);
-        BottomBarAdapter pagerAdapter = new BottomBarAdapter(getSupportFragmentManager());
-        pagerAdapter.addFragment(DashboardFragment.newInstance());
-        pagerAdapter.addFragment(CatalogFragment.newInstance());
-        pagerAdapter.addFragment(QuizzesFragment.newInstance());
-        pagerAdapter.addFragment(SettingsFragment.newInstance());
-        mMainBinding.fragmentViewPager.setAdapter(pagerAdapter);
+    private void setupBinding() {
+        mMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mMainBinding.setLifecycleOwner(this);
     }
 
     private void setupNavigation() {
@@ -64,9 +57,15 @@ public class MainActivity extends AppCompatActivity {
         mMainBinding.navigation.setSelectedItemId(R.id.navigation_dashboard);
     }
 
-    private void setupBinding() {
-        mMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mMainBinding.setLifecycleOwner(this);
+    private boolean loadFragment(Fragment fragment) {
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+            return true;
+        } else
+            return false;
     }
 
     @NonNull
