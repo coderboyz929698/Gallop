@@ -3,8 +3,8 @@ package io.github.umangjpatel.gallop.utils.viewholders;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 
-import io.github.umangjpatel.gallop.R;
 import io.github.umangjpatel.gallop.databinding.CatalogCourseListItemBinding;
+import io.github.umangjpatel.gallop.models.course.CourseInfo;
 
 public class CatalogViewHolder extends RecyclerView.ViewHolder {
 
@@ -15,9 +15,9 @@ public class CatalogViewHolder extends RecyclerView.ViewHolder {
         mItemBinding = itemBinding;
     }
 
-    public void bind() {
-        mItemBinding.courseCodeTextView.setText(R.string.course_code_placeholder);
-        mItemBinding.courseTitleTextView.setText(R.string.course_title_placeholder);
+    public void bind(CourseInfo courseInfo) {
+        mItemBinding.courseCodeTextView.setText(courseInfo.getCourseCode());
+        mItemBinding.courseTitleTextView.setText(courseInfo.getTitle());
         mItemBinding.executePendingBindings();
     }
 }
