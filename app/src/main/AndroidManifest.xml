@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".signup.SignUpActivity"
+            android:name=".splash.SplashActivity"
+            android:theme="@style/SplashTheme"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".signup.SignUpActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.MainActivity"
             android:label="@string/title_activity_main"
