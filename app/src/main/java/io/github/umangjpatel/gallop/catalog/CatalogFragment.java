@@ -11,8 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import io.github.umangjpatel.gallop.R;
 import io.github.umangjpatel.gallop.databinding.FragmentCatalogBinding;
+import io.github.umangjpatel.gallop.models.course.CourseInfo;
 import io.github.umangjpatel.gallop.utils.adapters.recyclerview.CatalogAdapter;
 
 /**
@@ -38,10 +44,22 @@ public class CatalogFragment extends Fragment {
                              Bundle savedInstanceState) {
         mCatalogBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_catalog, container, false);
         mCatalogViewModel = ViewModelProviders.of(this).get(CatalogViewModel.class);
-        mCatalogViewModel.getCourseCatalogLiveData().observe(this, courseInfoList -> {
-            mCatalogBinding.catalogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            mCatalogAdapter = new CatalogAdapter(courseInfoList);
-            mCatalogBinding.catalogRecyclerView.setAdapter(mCatalogAdapter);
+        mCatalogBinding.catalogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mCatalogViewModel.getCourseCatalogLiveData().observe(this, dataSnapshot -> {
+            if (dataSnapshot != null) {
+                List<CourseInfo> courseInfoList = new ArrayList<>();
+                for (DataSnapshot courseSnapshot : dataSnapshot.getChildren()) {
+                    CourseInfo courseInfo = courseSnapshot.getValue(CourseInfo.class);
+                    courseInfoList.add(courseInfo);
+                }
+                if (mCatalogAdapter == null) {
+                    mCatalogAdapter = new CatalogAdapter(courseInfoList);
+                    mCatalogBinding.catalogRecyclerView.setAdapter(mCatalogAdapter);
+                } else {
+                    mCatalogAdapter.setCourseInfoList(courseInfoList);
+                    mCatalogAdapter.notifyDataSetChanged();
+                }
+            }
         });
         return mCatalogBinding.getRoot();
     }

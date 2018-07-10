@@ -2,29 +2,27 @@ package io.github.umangjpatel.gallop.catalog;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
-import java.util.List;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import io.github.umangjpatel.gallop.models.course.CourseInfo;
-import io.github.umangjpatel.gallop.repositories.CatalogRepository;
+import io.github.umangjpatel.gallop.utils.database.FirebaseQueryLiveData;
 
 public class CatalogViewModel extends AndroidViewModel {
 
-    private CatalogRepository mCatalogRepository;
-    private MutableLiveData<List<CourseInfo>> mCourseCatalogLiveData;
+    private static final DatabaseReference COURSE_CATALOG =
+            FirebaseDatabase.getInstance().getReference().child("courses");
+    private FirebaseQueryLiveData mCourseCatalogLiveData;
 
     public CatalogViewModel(@NonNull Application application) {
         super(application);
-        mCatalogRepository = CatalogRepository.getInstance();
+        mCourseCatalogLiveData = new FirebaseQueryLiveData(COURSE_CATALOG);
     }
 
-    public MutableLiveData<List<CourseInfo>> getCourseCatalogLiveData() {
-        if (mCourseCatalogLiveData == null) {
-            mCourseCatalogLiveData = new MutableLiveData<>();
-            mCourseCatalogLiveData = mCatalogRepository.getCourseInfoList();
-        }
+    public LiveData<DataSnapshot> getCourseCatalogLiveData() {
         return mCourseCatalogLiveData;
     }
 }
