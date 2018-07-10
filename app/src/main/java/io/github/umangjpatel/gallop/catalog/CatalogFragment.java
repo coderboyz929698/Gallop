@@ -11,14 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.database.DataSnapshot;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import io.github.umangjpatel.gallop.R;
 import io.github.umangjpatel.gallop.databinding.FragmentCatalogBinding;
-import io.github.umangjpatel.gallop.models.course.CourseInfo;
 import io.github.umangjpatel.gallop.utils.adapters.recyclerview.CatalogAdapter;
 
 /**
@@ -45,13 +39,9 @@ public class CatalogFragment extends Fragment {
         mCatalogBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_catalog, container, false);
         mCatalogViewModel = ViewModelProviders.of(this).get(CatalogViewModel.class);
         mCatalogBinding.catalogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mCatalogViewModel.getCourseCatalogLiveData().observe(this, dataSnapshot -> {
-            if (dataSnapshot != null) {
-                List<CourseInfo> courseInfoList = new ArrayList<>();
-                for (DataSnapshot courseSnapshot : dataSnapshot.getChildren()) {
-                    CourseInfo courseInfo = courseSnapshot.getValue(CourseInfo.class);
-                    courseInfoList.add(courseInfo);
-                }
+
+        mCatalogViewModel.getCourseInfoLiveData().observe(this, courseInfoList -> {
+            if (courseInfoList != null) {
                 if (mCatalogAdapter == null) {
                     mCatalogAdapter = new CatalogAdapter(courseInfoList);
                     mCatalogBinding.catalogRecyclerView.setAdapter(mCatalogAdapter);
@@ -61,6 +51,8 @@ public class CatalogFragment extends Fragment {
                 }
             }
         });
+
+
         return mCatalogBinding.getRoot();
     }
 }
