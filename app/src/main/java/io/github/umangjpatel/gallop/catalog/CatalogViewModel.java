@@ -18,11 +18,13 @@ public class CatalogViewModel extends AndroidViewModel {
     public CatalogViewModel(@NonNull Application application) {
         super(application);
         mCatalogRepository = CatalogRepository.getInstance();
-        mCourseCatalogLiveData = new MutableLiveData<>();
-        mCourseCatalogLiveData.setValue(mCatalogRepository.getCourseInfoList());
     }
 
     public MutableLiveData<List<CourseInfo>> getCourseCatalogLiveData() {
+        if (mCourseCatalogLiveData == null) {
+            mCourseCatalogLiveData = new MutableLiveData<>();
+            mCourseCatalogLiveData = mCatalogRepository.getCourseInfoList();
+        }
         return mCourseCatalogLiveData;
     }
 }

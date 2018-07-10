@@ -38,21 +38,11 @@ public class CatalogFragment extends Fragment {
                              Bundle savedInstanceState) {
         mCatalogBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_catalog, container, false);
         mCatalogViewModel = ViewModelProviders.of(this).get(CatalogViewModel.class);
-        mCatalogBinding.catalogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        updateAdapter();
         mCatalogViewModel.getCourseCatalogLiveData().observe(this, courseInfoList -> {
-            mCatalogAdapter.setCourseInfoList(courseInfoList);
-            mCatalogAdapter.notifyDataSetChanged();
+            mCatalogBinding.catalogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            mCatalogAdapter = new CatalogAdapter(courseInfoList);
+            mCatalogBinding.catalogRecyclerView.setAdapter(mCatalogAdapter);
         });
         return mCatalogBinding.getRoot();
     }
-
-    private void updateAdapter() {
-        if (mCatalogAdapter == null) {
-            mCatalogAdapter = new CatalogAdapter(mCatalogViewModel.getCourseCatalogLiveData().getValue());
-            mCatalogBinding.catalogRecyclerView.setAdapter(mCatalogAdapter);
-        } else
-            mCatalogAdapter.notifyDataSetChanged();
-    }
-
 }

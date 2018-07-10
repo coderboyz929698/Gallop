@@ -16,21 +16,17 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".splash.SplashActivity"
-            android:theme="@style/SplashTheme"
-            android:screenOrientation="portrait">
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".signup.SignUpActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".signup.SignUpActivity" />
         <activity
             android:name=".main.MainActivity"
-            android:label="@string/title_activity_main"
-            android:screenOrientation="portrait" />
+            android:label="@string/title_activity_main" />
     </application>
 
 </manifest>

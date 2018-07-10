@@ -20,25 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding mMainBinding;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = item -> {
-        Fragment fragment = null;
-        switch (item.getItemId()) {
-            case R.id.navigation_dashboard:
-                fragment = DashboardFragment.newInstance();
-                break;
-            case R.id.navigation_catalog:
-                fragment = CatalogFragment.newInstance();
-                break;
-            case R.id.navigation_quizzes:
-                fragment = QuizzesFragment.newInstance();
-                break;
-            case R.id.navigation_settings:
-                fragment = SettingsFragment.newInstance();
-                break;
-        }
-        return loadFragment(fragment);
-    };
-
+            = item -> loadFragment(item.getItemId());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,15 +39,31 @@ public class MainActivity extends AppCompatActivity {
         mMainBinding.navigation.setSelectedItemId(R.id.navigation_dashboard);
     }
 
-    private boolean loadFragment(Fragment fragment) {
-        if (fragment != null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
-                    .commit();
-            return true;
-        } else
-            return false;
+    private boolean loadFragment(int itemId) {
+        Fragment fragment;
+        switch (itemId) {
+            case R.id.navigation_dashboard:
+                fragment = DashboardFragment.newInstance();
+                break;
+            case R.id.navigation_catalog:
+                fragment = CatalogFragment.newInstance();
+                break;
+            case R.id.navigation_quizzes:
+                fragment = QuizzesFragment.newInstance();
+                break;
+            case R.id.navigation_settings:
+                fragment = SettingsFragment.newInstance();
+                break;
+            default:
+                return false;
+        }
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
+
+        return true;
     }
 
     @NonNull
