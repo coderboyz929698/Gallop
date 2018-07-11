@@ -15,9 +15,6 @@ import io.github.umangjpatel.gallop.R;
 import io.github.umangjpatel.gallop.databinding.FragmentCatalogBinding;
 import io.github.umangjpatel.gallop.utils.adapters.recyclerview.CatalogAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class CatalogFragment extends Fragment {
 
     private FragmentCatalogBinding mCatalogBinding;
@@ -51,8 +48,6 @@ public class CatalogFragment extends Fragment {
                 }
             }
         });
-
-
         return mCatalogBinding.getRoot();
     }
 }

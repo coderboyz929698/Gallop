@@ -57,12 +57,10 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return false;
         }
-
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();
-
         return true;
     }
 
