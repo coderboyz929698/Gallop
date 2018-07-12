@@ -15,6 +15,8 @@ import io.github.umangjpatel.gallop.R;
 import io.github.umangjpatel.gallop.databinding.FragmentCatalogBinding;
 import io.github.umangjpatel.gallop.utils.adapters.recyclerview.CatalogAdapter;
 
+import static android.support.v7.widget.SearchView.OnQueryTextListener;
+
 public class CatalogFragment extends Fragment {
 
     private FragmentCatalogBinding mCatalogBinding;
@@ -36,7 +38,6 @@ public class CatalogFragment extends Fragment {
         mCatalogBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_catalog, container, false);
         mCatalogViewModel = ViewModelProviders.of(this).get(CatalogViewModel.class);
         mCatalogBinding.catalogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         mCatalogViewModel.getCourseInfoLiveData().observe(this, courseInfoList -> {
             if (courseInfoList != null) {
                 if (mCatalogAdapter == null) {
@@ -46,6 +47,17 @@ public class CatalogFragment extends Fragment {
                     mCatalogAdapter.setCourseInfoList(courseInfoList);
                     mCatalogAdapter.notifyDataSetChanged();
                 }
+            }
+        });
+        mCatalogBinding.catalogSearchView.setOnQueryTextListener(new OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
         return mCatalogBinding.getRoot();
