@@ -13,23 +13,23 @@ import io.github.umangjpatel.gallop.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QuestionsFragment extends Fragment {
+public class QuestionsListFragment extends Fragment {
 
 
-    public QuestionsFragment() {
+    public QuestionsListFragment() {
         // Required empty public constructor
     }
 
     @NonNull
-    public static QuestionsFragment newInstance() {
-        return new QuestionsFragment();
+    public static QuestionsListFragment newInstance() {
+        return new QuestionsListFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_questions, container, false);
+        return inflater.inflate(R.layout.fragment_list_questions, container, false);
     }
 
 }

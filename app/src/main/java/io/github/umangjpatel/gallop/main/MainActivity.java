@@ -13,7 +13,7 @@ import io.github.umangjpatel.gallop.R;
 import io.github.umangjpatel.gallop.catalog.CatalogFragment;
 import io.github.umangjpatel.gallop.dashboard.DashboardFragment;
 import io.github.umangjpatel.gallop.databinding.ActivityMainBinding;
-import io.github.umangjpatel.gallop.questions.QuestionsFragment;
+import io.github.umangjpatel.gallop.questions.QuestionsListFragment;
 import io.github.umangjpatel.gallop.settings.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 fragment = CatalogFragment.newInstance();
                 break;
             case R.id.navigation_questions:
-                fragment = QuestionsFragment.newInstance();
+                fragment = QuestionsListFragment.newInstance();
                 break;
             case R.id.navigation_settings:
                 fragment = SettingsFragment.newInstance();
