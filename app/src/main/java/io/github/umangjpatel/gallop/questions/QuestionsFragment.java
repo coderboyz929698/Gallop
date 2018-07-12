@@ -1,4 +1,4 @@
-package io.github.umangjpatel.gallop.quizzes;
+package io.github.umangjpatel.gallop.questions;
 
 
 import android.os.Bundle;
@@ -13,23 +13,23 @@ import io.github.umangjpatel.gallop.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QuizzesFragment extends Fragment {
+public class QuestionsFragment extends Fragment {
 
 
-    public QuizzesFragment() {
+    public QuestionsFragment() {
         // Required empty public constructor
     }
 
     @NonNull
-    public static QuizzesFragment newInstance() {
-        return new QuizzesFragment();
+    public static QuestionsFragment newInstance() {
+        return new QuestionsFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quizzes, container, false);
+        return inflater.inflate(R.layout.fragment_questions, container, false);
     }
 
 }

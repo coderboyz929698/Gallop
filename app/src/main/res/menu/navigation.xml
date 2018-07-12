@@ -12,9 +12,9 @@
         android:title="@string/title_catalog" />
 
     <item
-        android:id="@+id/navigation_quizzes"
-        android:icon="@drawable/ic_quizzes"
-        android:title="@string/title_quiz" />
+        android:id="@+id/navigation_questions"
+        android:icon="@drawable/ic_questions"
+        android:title="@string/title_questions" />
 
     <item
         android:id="@+id/navigation_settings"
