@@ -52,6 +52,7 @@ public class CatalogFragment extends Fragment {
         mCatalogBinding.catalogSearchView.setOnQueryTextListener(new OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                mCatalogViewModel.searchCourse(query);
                 return false;
             }
 

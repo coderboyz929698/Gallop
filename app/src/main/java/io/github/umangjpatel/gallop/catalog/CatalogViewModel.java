@@ -47,4 +47,8 @@ public class CatalogViewModel extends AndroidViewModel {
     public LiveData<List<CourseInfo>> getCourseInfoLiveData() {
         return mCourseInfoLiveData;
     }
+
+    public void searchCourse(String query) {
+
+    }
 }
