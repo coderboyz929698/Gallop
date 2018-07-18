@@ -19,6 +19,8 @@ import static android.support.v7.widget.SearchView.OnQueryTextListener;
 
 public class CatalogFragment extends Fragment {
 
+    private static final int EMPTY_COURSES = 0, LOADING_COURSES = 1, LOADED_COURSES = 2;
+
     private FragmentCatalogBinding mCatalogBinding;
     private CatalogViewModel mCatalogViewModel;
     private CatalogAdapter mCatalogAdapter;
@@ -37,10 +39,10 @@ public class CatalogFragment extends Fragment {
                              Bundle savedInstanceState) {
         mCatalogBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_catalog, container, false);
         mCatalogViewModel = ViewModelProviders.of(this).get(CatalogViewModel.class);
-        updateUI(false);
+        updateUI(LOADING_COURSES);
         mCatalogViewModel.getCourseInfoLiveData().observe(this, courseInfoList -> {
-            if (courseInfoList != null) {
-                updateUI(true);
+            if (courseInfoList != null && courseInfoList.size() > 0) {
+                updateUI(LOADED_COURSES);
                 if (mCatalogAdapter == null) {
                     mCatalogAdapter = new CatalogAdapter(courseInfoList);
                     mCatalogBinding.catalogRecyclerView.setAdapter(mCatalogAdapter);
@@ -48,7 +50,8 @@ public class CatalogFragment extends Fragment {
                     mCatalogAdapter.setCourseInfoList(courseInfoList);
                     mCatalogAdapter.notifyDataSetChanged();
                 }
-            }
+            } else
+                updateUI(EMPTY_COURSES);
         });
         mCatalogBinding.catalogSearchView.setOnQueryTextListener(new OnQueryTextListener() {
             @Override
@@ -70,9 +73,27 @@ public class CatalogFragment extends Fragment {
         return mCatalogBinding.getRoot();
     }
 
-    private void updateUI(boolean isItemsLoaded) {
-        mCatalogBinding.progressBar.setVisibility(isItemsLoaded ? View.GONE : View.VISIBLE);
-        mCatalogBinding.catalogRecyclerView.setVisibility(isItemsLoaded ? View.VISIBLE : View.GONE);
-        mCatalogBinding.catalogRecyclerView.setLayoutManager(isItemsLoaded ? new LinearLayoutManager(getActivity()) : null);
+    private void updateUI(int layoutType) {
+        switch (layoutType) {
+            case LOADING_COURSES:
+                mCatalogBinding.emptyCourses.setVisibility(View.GONE);
+                mCatalogBinding.progressBar.setVisibility(View.VISIBLE);
+                mCatalogBinding.catalogRecyclerView.setVisibility(View.GONE);
+                mCatalogBinding.catalogRecyclerView.setLayoutManager(null);
+                break;
+            case LOADED_COURSES:
+                mCatalogBinding.emptyCourses.setVisibility(View.GONE);
+                mCatalogBinding.progressBar.setVisibility(View.GONE);
+                mCatalogBinding.catalogRecyclerView.setVisibility(View.VISIBLE);
+                mCatalogBinding.catalogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                break;
+            case EMPTY_COURSES:
+                mCatalogBinding.emptyCourses.setVisibility(View.VISIBLE);
+                mCatalogBinding.progressBar.setVisibility(View.GONE);
+                mCatalogBinding.catalogRecyclerView.setVisibility(View.GONE);
+                mCatalogBinding.catalogRecyclerView.setLayoutManager(null);
+                break;
+        }
+
     }
 }

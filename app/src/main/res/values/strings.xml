@@ -20,4 +20,5 @@
     <string name="course_code_placeholder">ML-101</string>
     <string name="course_title_placeholder">Intro to Machine Learning</string>
     <string name="search_catalog_hint">Search Catalog</string>
+    <string name="catalog_empty">No course found</string>
 </resources>
