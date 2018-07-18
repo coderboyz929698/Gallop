@@ -37,9 +37,10 @@ public class CatalogFragment extends Fragment {
                              Bundle savedInstanceState) {
         mCatalogBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_catalog, container, false);
         mCatalogViewModel = ViewModelProviders.of(this).get(CatalogViewModel.class);
-        mCatalogBinding.catalogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        updateUI(false);
         mCatalogViewModel.getCourseInfoLiveData().observe(this, courseInfoList -> {
             if (courseInfoList != null) {
+                updateUI(true);
                 if (mCatalogAdapter == null) {
                     mCatalogAdapter = new CatalogAdapter(courseInfoList);
                     mCatalogBinding.catalogRecyclerView.setAdapter(mCatalogAdapter);
@@ -62,5 +63,11 @@ public class CatalogFragment extends Fragment {
             }
         });
         return mCatalogBinding.getRoot();
+    }
+
+    private void updateUI(boolean isItemsLoaded) {
+        mCatalogBinding.progressBar.setVisibility(isItemsLoaded ? View.GONE : View.VISIBLE);
+        mCatalogBinding.catalogRecyclerView.setVisibility(isItemsLoaded ? View.VISIBLE : View.GONE);
+        mCatalogBinding.catalogRecyclerView.setLayoutManager(isItemsLoaded ? new LinearLayoutManager(getActivity()) : null);
     }
 }
