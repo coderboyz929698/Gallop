@@ -26,7 +26,11 @@ public class FirebaseQueryLiveData extends LiveData<DataSnapshot> {
     };
 
     public FirebaseQueryLiveData(DatabaseReference databaseReference) {
-        this.mQuery = databaseReference;
+        mQuery = databaseReference;
+    }
+
+    public FirebaseQueryLiveData(Query query) {
+        mQuery = query;
     }
 
     @Override

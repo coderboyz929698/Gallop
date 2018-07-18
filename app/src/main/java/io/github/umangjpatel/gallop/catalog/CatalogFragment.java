@@ -54,13 +54,18 @@ public class CatalogFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 mCatalogViewModel.searchCourse(query);
-                return false;
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                mCatalogViewModel.searchCourse(newText);
                 return false;
             }
+        });
+        mCatalogBinding.catalogSearchView.setOnCloseListener(() -> {
+            mCatalogViewModel.getCatalog();
+            return true;
         });
         return mCatalogBinding.getRoot();
     }
