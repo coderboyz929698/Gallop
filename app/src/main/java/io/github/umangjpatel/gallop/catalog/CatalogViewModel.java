@@ -38,6 +38,10 @@ public class CatalogViewModel extends AndroidViewModel {
 
     public void getCatalog() {
         mLiveData = new FirebaseQueryLiveData(COURSE_CATALOG);
+        addLiveDataSource();
+    }
+
+    private void addLiveDataSource() {
         mCourseInfoLiveData.addSource(mLiveData, dataSnapshot -> {
             if (dataSnapshot != null) {
                 new Thread(() -> {
@@ -55,19 +59,7 @@ public class CatalogViewModel extends AndroidViewModel {
 
     public void searchCourse(String query) {
         mLiveData = new FirebaseQueryLiveData(generateQuery(query));
-        mCourseInfoLiveData.addSource(mLiveData, dataSnapshot -> {
-            if (dataSnapshot != null) {
-                new Thread(() -> {
-                    List<CourseInfo> courseInfoList = new ArrayList<>();
-                    for (DataSnapshot courseSnapshot : dataSnapshot.getChildren()) {
-                        CourseInfo courseInfo = courseSnapshot.getValue(CourseInfo.class);
-                        courseInfoList.add(courseInfo);
-                    }
-                    mCourseInfoLiveData.postValue(courseInfoList);
-                }).start();
-            } else
-                mCourseInfoLiveData.setValue(null);
-        });
+        addLiveDataSource();
     }
 
     private Query generateQuery(String query) {
