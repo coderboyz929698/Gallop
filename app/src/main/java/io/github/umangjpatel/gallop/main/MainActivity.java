@@ -18,6 +18,9 @@ import io.github.umangjpatel.gallop.settings.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String KEY_NAV_INDEX = MainActivity.class.getSimpleName() + ".key_nav_index";
+    private int mNavIndex;
+
     private ActivityMainBinding mMainBinding;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> loadFragment(item.getItemId());
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupBinding();
-        setupNavigation();
+        setupNavigation(savedInstanceState);
     }
 
     private void setupBinding() {
@@ -34,12 +37,13 @@ public class MainActivity extends AppCompatActivity {
         mMainBinding.setLifecycleOwner(this);
     }
 
-    private void setupNavigation() {
+    private void setupNavigation(Bundle savedInstanceState) {
         mMainBinding.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        mMainBinding.navigation.setSelectedItemId(R.id.navigation_dashboard);
+        mMainBinding.navigation.setSelectedItemId(savedInstanceState != null ? mNavIndex : R.id.navigation_dashboard);
     }
 
     private boolean loadFragment(int itemId) {
+        mNavIndex = itemId;
         Fragment fragment;
         switch (itemId) {
             case R.id.navigation_dashboard:
@@ -62,6 +66,12 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, fragment)
                 .commit();
         return true;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(KEY_NAV_INDEX, mNavIndex);
     }
 
     @NonNull
