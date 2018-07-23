@@ -28,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.LoginTheme);
         mSignUpBinding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
         mSignUpBinding.setLifecycleOwner(this);
         mSignUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel.class);
