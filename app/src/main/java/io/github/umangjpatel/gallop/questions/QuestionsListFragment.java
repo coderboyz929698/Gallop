@@ -1,20 +1,22 @@
 package io.github.umangjpatel.gallop.questions;
 
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import io.github.umangjpatel.gallop.R;
+import io.github.umangjpatel.gallop.databinding.FragmentListQuestionsBinding;
+import io.github.umangjpatel.gallop.utils.adapters.recyclerview.QuestionListAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class QuestionsListFragment extends Fragment {
 
+    private FragmentListQuestionsBinding mListQuestionsBinding;
 
     public QuestionsListFragment() {
         // Required empty public constructor
@@ -28,8 +30,10 @@ public class QuestionsListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_questions, container, false);
+        mListQuestionsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_list_questions, container, false);
+        mListQuestionsBinding.questionsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mListQuestionsBinding.questionsRecyclerView.setAdapter(new QuestionListAdapter());
+        return mListQuestionsBinding.getRoot();
     }
 
 }
