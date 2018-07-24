@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import io.github.umangjpatel.gallop.databinding.QuestionListItemBinding;
-import io.github.umangjpatel.gallop.models.Question;
+import io.github.umangjpatel.gallop.models.question.Question;
 import io.github.umangjpatel.gallop.utils.viewholders.QuestionViewHolder;
 
 public class QuestionListAdapter extends RecyclerView.Adapter<QuestionViewHolder> {

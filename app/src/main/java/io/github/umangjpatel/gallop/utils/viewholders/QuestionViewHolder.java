@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import io.github.umangjpatel.gallop.databinding.QuestionListItemBinding;
-import io.github.umangjpatel.gallop.models.Question;
+import io.github.umangjpatel.gallop.models.question.Question;
 
 public class QuestionViewHolder extends RecyclerView.ViewHolder {
 

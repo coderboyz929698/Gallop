@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import io.github.umangjpatel.gallop.models.Question;
+import io.github.umangjpatel.gallop.models.question.Question;
 import io.github.umangjpatel.gallop.utils.database.FirebaseQueryLiveData;
 
 public class QuestionsListViewModel extends AndroidViewModel {

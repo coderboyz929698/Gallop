@@ -1,4 +1,4 @@
-package io.github.umangjpatel.gallop.models;
+package io.github.umangjpatel.gallop.models.question;
 
 public class Question {
 

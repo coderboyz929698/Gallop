@@ -17,7 +17,7 @@ import io.github.umangjpatel.gallop.utils.adapters.recyclerview.QuestionListAdap
 
 public class QuestionsListFragment extends Fragment {
 
-    private static final int EMPTY_QUESTIONS = 0, LOADING_COURSES = 1, LOADED_COURSES = 2;
+    private static final int EMPTY_QUESTIONS = 0, LOADING_QUESTIONS = 1, LOADED_QUESTIONS = 2;
 
     private FragmentListQuestionsBinding mQuestionsBinding;
     private QuestionsListViewModel mQuestionsListViewModel;
@@ -38,10 +38,10 @@ public class QuestionsListFragment extends Fragment {
                              Bundle savedInstanceState) {
         mQuestionsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_list_questions, container, false);
         mQuestionsListViewModel = ViewModelProviders.of(this).get(QuestionsListViewModel.class);
-        updateUI(LOADING_COURSES);
+        updateUI(LOADING_QUESTIONS);
         mQuestionsListViewModel.getQuestionsLiveData().observe(this, questions -> {
             if (questions != null && questions.size() > 0) {
-                updateUI(LOADED_COURSES);
+                updateUI(LOADED_QUESTIONS);
                 if (mQuestionListAdapter == null) {
                     mQuestionListAdapter = new QuestionListAdapter(questions);
                     mQuestionsBinding.questionsRecyclerView.setAdapter(mQuestionListAdapter);
@@ -59,13 +59,13 @@ public class QuestionsListFragment extends Fragment {
 
     private void updateUI(int layoutType) {
         switch (layoutType) {
-            case LOADING_COURSES:
+            case LOADING_QUESTIONS:
                 mQuestionsBinding.emptyQuestions.setVisibility(View.GONE);
                 mQuestionsBinding.progressBar.setVisibility(View.VISIBLE);
                 mQuestionsBinding.questionsRecyclerView.setVisibility(View.GONE);
                 mQuestionsBinding.questionsRecyclerView.setLayoutManager(null);
                 break;
-            case LOADED_COURSES:
+            case LOADED_QUESTIONS:
                 mQuestionsBinding.emptyQuestions.setVisibility(View.GONE);
                 mQuestionsBinding.progressBar.setVisibility(View.GONE);
                 mQuestionsBinding.questionsRecyclerView.setVisibility(View.VISIBLE);
