@@ -37,6 +37,7 @@ public class QuestionsListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mQuestionsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_list_questions, container, false);
+        mQuestionsBinding.setLifecycleOwner(this);
         mQuestionsListViewModel = ViewModelProviders.of(this).get(QuestionsListViewModel.class);
         updateUI(LOADING_QUESTIONS);
         mQuestionsListViewModel.getQuestionsLiveData().observe(this, questions -> {
