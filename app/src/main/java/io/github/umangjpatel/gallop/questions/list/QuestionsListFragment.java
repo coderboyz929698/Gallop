@@ -1,4 +1,4 @@
-package io.github.umangjpatel.gallop.questions;
+package io.github.umangjpatel.gallop.questions.list;
 
 
 import android.arch.lifecycle.ViewModelProviders;

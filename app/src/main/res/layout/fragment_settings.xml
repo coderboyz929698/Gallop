@@ -57,8 +57,6 @@
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"
             android:background="?android:selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
             app:backgroundTint="@color/buttonColor"
             app:layout_constraintBottom_toBottomOf="@+id/user_profile_image"
             app:layout_constraintEnd_toStartOf="@+id/user_email_text_view"

@@ -25,12 +25,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@style/LoginTheme"
             android:name=".signup.SignUpActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginTheme" />
         <activity
             android:name=".main.MainActivity"
             android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".questions.detail.QuestionDetailActivity"
             android:screenOrientation="portrait" />
     </application>
 

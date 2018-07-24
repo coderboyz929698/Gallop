@@ -22,4 +22,7 @@
     <string name="search_catalog_hint">Search Catalog</string>
     <string name="catalog_empty">No course found</string>
     <string name="questions_empty">No questions found</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

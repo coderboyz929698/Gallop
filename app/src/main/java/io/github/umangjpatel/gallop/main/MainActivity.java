@@ -13,7 +13,7 @@ import io.github.umangjpatel.gallop.R;
 import io.github.umangjpatel.gallop.catalog.CatalogFragment;
 import io.github.umangjpatel.gallop.dashboard.DashboardFragment;
 import io.github.umangjpatel.gallop.databinding.ActivityMainBinding;
-import io.github.umangjpatel.gallop.questions.QuestionsListFragment;
+import io.github.umangjpatel.gallop.questions.list.QuestionsListFragment;
 import io.github.umangjpatel.gallop.settings.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
