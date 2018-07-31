@@ -35,7 +35,7 @@
         <activity
             android:name=".questions.detail.QuestionDetailActivity"
             android:parentActivityName=".main.MainActivity"
-            android:theme="@style/DetailTheme"
+            android:theme="@style/AppBarTheme"
             android:screenOrientation="portrait" />
     </application>
 

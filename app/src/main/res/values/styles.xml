@@ -23,7 +23,7 @@
         <item name="android:fontFamily">@font/product_sans_regular</item>
     </style>
 
-    <style name="DetailTheme" parent="Theme.AppCompat.Light">
+    <style name="AppBarTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
