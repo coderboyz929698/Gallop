@@ -34,6 +34,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".questions.detail.QuestionDetailActivity"
+            android:parentActivityName=".main.MainActivity"
+            android:theme="@style/DetailTheme"
             android:screenOrientation="portrait" />
     </application>
 
