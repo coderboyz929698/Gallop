@@ -6,9 +6,12 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.support.annotation.NonNull;
 
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import io.github.umangjpatel.gallop.models.answer.Answer;
@@ -44,21 +47,25 @@ public class QuestionDetailViewModel extends AndroidViewModel {
             } else
                 mQuestionLiveData.setValue(null);
         });
+
         ANSWERS_REF = FirebaseDatabase
                 .getInstance()
                 .getReference()
                 .child("answers")
                 .child(questionKey);
         mAnswersFirebaseLiveData = new FirebaseQueryLiveData(ANSWERS_REF);
-        /*
         mAnswersLiveData.addSource(mAnswersFirebaseLiveData, dataSnapshot -> {
-           if (dataSnapshot != null) {
-               new Thread(() -> {
-
-               }).start();
-           } else
-               mAnswersLiveData.setValue(null);
-        }); */
+            if (dataSnapshot != null) {
+                new Thread(() -> {
+                    List<Answer> answerList = new ArrayList<>();
+                    for (DataSnapshot answerSnapshot : dataSnapshot.getChildren())
+                        answerList.add(answerSnapshot.getValue(Answer.class));
+                    Collections.reverse(answerList);
+                    mAnswersLiveData.postValue(answerList);
+                }).start();
+            } else
+                mAnswersLiveData.setValue(null);
+        });
 
     }
 

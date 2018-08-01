@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.MenuItem;
 
 import io.github.umangjpatel.gallop.R;
 import io.github.umangjpatel.gallop.databinding.ActivityQuestionDetailBinding;
+import io.github.umangjpatel.gallop.utils.adapters.recyclerview.AnswerListAdapter;
 
 public class QuestionDetailActivity extends AppCompatActivity {
 
@@ -19,6 +21,8 @@ public class QuestionDetailActivity extends AppCompatActivity {
 
     private ActivityQuestionDetailBinding mQuestionDetailBinding;
     private QuestionDetailViewModel mQuestionDetailViewModel;
+
+    private AnswerListAdapter mAnswerListAdapter;
 
     private String mQuestionKey;
 
@@ -35,12 +39,9 @@ public class QuestionDetailActivity extends AppCompatActivity {
         mQuestionDetailBinding.setLifecycleOwner(this);
         mQuestionDetailViewModel = ViewModelProviders.of(this).get(QuestionDetailViewModel.class);
         mQuestionKey = savedInstanceState != null ? savedInstanceState.getString(KEY_QUESTION_DETAIL) : getIntent().getStringExtra(EXTRA_QUESTION_DETAIL);
-
         if (mQuestionKey != null) {
             mQuestionDetailViewModel.setDatabaseReference(mQuestionKey);
-
         }
-
         mQuestionDetailViewModel
                 .getQuestionLiveData()
                 .observe(this, question -> {
@@ -49,6 +50,21 @@ public class QuestionDetailActivity extends AppCompatActivity {
                         mQuestionDetailBinding.detailQuestionAuthorTextView
                                 .setText(getString(R.string.question_author, question.getAuthor()));
                         mQuestionDetailBinding.questionDetailTextView.setText(question.getQuestion());
+                    }
+                });
+
+        mQuestionDetailBinding.answersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mQuestionDetailViewModel
+                .getAnswersLiveData()
+                .observe(this, answers -> {
+                    if (answers != null) {
+                        if (mAnswerListAdapter == null) {
+                            mAnswerListAdapter = new AnswerListAdapter(answers);
+                            mQuestionDetailBinding.answersRecyclerView.setAdapter(mAnswerListAdapter);
+                        } else {
+                            mAnswerListAdapter.setAnswers(answers);
+                            mAnswerListAdapter.notifyDataSetChanged();
+                        }
                     }
                 });
     }
