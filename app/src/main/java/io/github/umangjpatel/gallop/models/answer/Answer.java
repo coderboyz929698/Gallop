@@ -6,7 +6,7 @@ public class Answer {
     private long mDate;
 
     public Answer() {
-        //Left for Firebase services
+        //Left intentionally for Firebase services
     }
 
     public String getKey() {
@@ -17,12 +17,12 @@ public class Answer {
         mKey = key;
     }
 
-    public String getQuestion() {
+    public String getAnswer() {
         return mAnswer;
     }
 
-    public void setAnswer(String answer) {
-        mAnswer = answer;
+    public void setAnswer(String question) {
+        mAnswer = question;
     }
 
     public long getDate() {
@@ -42,4 +42,3 @@ public class Answer {
     }
 
 }
-

@@ -1,8 +1,6 @@
 package io.github.umangjpatel.gallop.models.question;
 
-import java.io.Serializable;
-
-public class Question implements Serializable {
+public class Question {
 
     private String mKey, mLabel, mQuestion, mAuthor;
     private long mDate;

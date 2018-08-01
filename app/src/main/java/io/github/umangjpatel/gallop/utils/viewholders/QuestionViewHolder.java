@@ -46,6 +46,6 @@ public class QuestionViewHolder extends RecyclerView.ViewHolder implements View.
                 .getContext()
                 .startActivity(QuestionDetailActivity
                         .newIntent(mItemBinding.getRoot().getContext(),
-                                mQuestion));
+                                mQuestion.getKey()));
     }
 }
