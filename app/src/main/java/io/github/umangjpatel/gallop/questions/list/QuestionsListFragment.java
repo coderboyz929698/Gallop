@@ -53,6 +53,8 @@ public class QuestionsListFragment extends Fragment {
             } else
                 updateUI(EMPTY_QUESTIONS);
         });
+        mQuestionsBinding.newQuestionButton.setOnClickListener(v ->
+                startActivity(AskQuestionActivity.getIntent(getActivity())));
 
 
         return mQuestionsBinding.getRoot();
