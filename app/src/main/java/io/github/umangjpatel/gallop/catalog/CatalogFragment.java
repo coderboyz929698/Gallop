@@ -1,21 +1,21 @@
 package io.github.umangjpatel.gallop.catalog;
 
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import io.github.umangjpatel.gallop.R;
 import io.github.umangjpatel.gallop.databinding.FragmentCatalogBinding;
 import io.github.umangjpatel.gallop.utils.adapters.recyclerview.CatalogAdapter;
 
-import static android.support.v7.widget.SearchView.OnQueryTextListener;
+import static androidx.appcompat.widget.SearchView.OnQueryTextListener;
 
 public class CatalogFragment extends Fragment {
 

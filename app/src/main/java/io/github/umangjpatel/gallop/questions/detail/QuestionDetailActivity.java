@@ -1,14 +1,14 @@
 package io.github.umangjpatel.gallop.questions.detail;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import io.github.umangjpatel.gallop.R;
 import io.github.umangjpatel.gallop.databinding.ActivityQuestionDetailBinding;
 import io.github.umangjpatel.gallop.utils.adapters.recyclerview.AnswerListAdapter;

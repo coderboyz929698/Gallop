@@ -1,8 +1,8 @@
 package io.github.umangjpatel.gallop.splash;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import io.github.umangjpatel.gallop.R;
 import io.github.umangjpatel.gallop.signup.SignUpActivity;
 

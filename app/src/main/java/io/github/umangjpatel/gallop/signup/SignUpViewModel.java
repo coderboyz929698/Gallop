@@ -1,11 +1,11 @@
 package io.github.umangjpatel.gallop.signup;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.support.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseUser;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import io.github.umangjpatel.gallop.repositories.UserInfoRepository;
 
 public class SignUpViewModel extends AndroidViewModel {

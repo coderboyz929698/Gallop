@@ -1,13 +1,13 @@
 package io.github.umangjpatel.gallop.utils.viewholders;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import io.github.umangjpatel.gallop.databinding.QuestionListItemBinding;
 import io.github.umangjpatel.gallop.models.question.Question;
 import io.github.umangjpatel.gallop.questions.detail.QuestionDetailActivity;

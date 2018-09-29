@@ -2,13 +2,14 @@ package io.github.umangjpatel.gallop.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import io.github.umangjpatel.gallop.R;
 import io.github.umangjpatel.gallop.catalog.CatalogFragment;
 import io.github.umangjpatel.gallop.dashboard.DashboardFragment;

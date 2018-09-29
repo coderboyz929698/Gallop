@@ -1,12 +1,12 @@
 package io.github.umangjpatel.gallop.settings;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.MutableLiveData;
-import android.support.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseUser;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
 import io.github.umangjpatel.gallop.models.user.UserInfo;
 import io.github.umangjpatel.gallop.repositories.UserInfoRepository;
 

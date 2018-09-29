@@ -1,7 +1,6 @@
 package io.github.umangjpatel.gallop.questions.list;
 
-import android.arch.lifecycle.ViewModel;
-
+import androidx.lifecycle.ViewModel;
 import io.github.umangjpatel.gallop.repositories.QuestionPostRepository;
 
 class AskQuestionViewModel extends ViewModel {

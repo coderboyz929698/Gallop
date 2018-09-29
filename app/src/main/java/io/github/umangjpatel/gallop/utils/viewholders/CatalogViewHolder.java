@@ -1,8 +1,7 @@
 package io.github.umangjpatel.gallop.utils.viewholders;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import io.github.umangjpatel.gallop.databinding.CatalogCourseListItemBinding;
 import io.github.umangjpatel.gallop.models.course.CourseInfo;
 
