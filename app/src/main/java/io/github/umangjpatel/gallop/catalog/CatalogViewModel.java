@@ -63,6 +63,7 @@ public class CatalogViewModel extends AndroidViewModel {
     }
 
     private Query generateQuery(String query) {
+        query = query.toLowerCase();
         return FirebaseDatabase
                 .getInstance()
                 .getReference()

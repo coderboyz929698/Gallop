@@ -2,7 +2,7 @@ package io.github.umangjpatel.gallop.models.question;
 
 public class Question {
 
-    private String mKey, mLabel, mQuestion, mAuthor;
+    private String mKey, mLabel, mQuestion, mQuestionSearch, mAuthor;
     private long mDate;
 
     public Question() {
@@ -47,5 +47,13 @@ public class Question {
 
     public void setAuthor(String author) {
         mAuthor = author;
+    }
+
+    public String getQuestionSearch() {
+        return mQuestionSearch;
+    }
+
+    public void setQuestionSearch(String questionSearch) {
+        mQuestionSearch = questionSearch;
     }
 }

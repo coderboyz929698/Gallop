@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -53,6 +54,20 @@ public class QuestionsListFragment extends Fragment {
             } else
                 updateUI(EMPTY_QUESTIONS);
         });
+        mQuestionsBinding.questionSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                mQuestionsListViewModel.searchQuestion(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mQuestionsListViewModel.searchQuestion(newText);
+                return false;
+            }
+        });
+
         mQuestionsBinding.newQuestionButton.setOnClickListener(v ->
                 startActivity(AskQuestionActivity.getIntent(getActivity())));
 

@@ -5,6 +5,7 @@ import android.app.Application;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,8 +29,26 @@ public class QuestionsListViewModel extends AndroidViewModel {
 
     public QuestionsListViewModel(@NonNull Application application) {
         super(application);
-        mLiveData = new FirebaseQueryLiveData(QUESTIONS_REF);
         mQuestionsLiveData = new MediatorLiveData<>();
+        getQuestions();
+    }
+
+    public void getQuestions() {
+        mLiveData = new FirebaseQueryLiveData(QUESTIONS_REF);
+        addLiveDataSource(true);
+    }
+
+    @NonNull
+    public LiveData<List<Question>> getQuestionsLiveData() {
+        return mQuestionsLiveData;
+    }
+
+    public void searchQuestion(String query) {
+        mLiveData = new FirebaseQueryLiveData(generateQuery(query));
+        addLiveDataSource(false);
+    }
+
+    private void addLiveDataSource(boolean isReverse) {
         mQuestionsLiveData.addSource(mLiveData, dataSnapshot -> {
             if (dataSnapshot != null) {
                 new Thread(() -> {
@@ -38,7 +57,8 @@ public class QuestionsListViewModel extends AndroidViewModel {
                         Question question = questionSnapshot.getValue(Question.class);
                         questions.add(question);
                     }
-                    Collections.reverse(questions);
+                    if (isReverse)
+                        Collections.reverse(questions);
                     mQuestionsLiveData.postValue(questions);
                 }).start();
             } else
@@ -46,8 +66,15 @@ public class QuestionsListViewModel extends AndroidViewModel {
         });
     }
 
-    @NonNull
-    public LiveData<List<Question>> getQuestionsLiveData() {
-        return mQuestionsLiveData;
+    private Query generateQuery(String query) {
+        return FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("questions")
+                .orderByChild("questionSearch")
+                .startAt(query)
+                .endAt(query + "\uf8ff");
     }
+
+
 }

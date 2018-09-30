@@ -47,6 +47,7 @@ public class QuestionPostRepository {
         question.setDate(new Date().getTime());
         question.setLabel(label);
         question.setQuestion(questionContent);
+        question.setQuestionSearch(questionContent.toLowerCase());
         question.setKey(sQuestionReference.push().getKey());
         sQuestionReference.child(question.getKey()).setValue(question);
     }
