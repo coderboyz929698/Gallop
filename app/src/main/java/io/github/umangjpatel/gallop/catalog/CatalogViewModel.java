@@ -32,11 +32,11 @@ public class CatalogViewModel extends AndroidViewModel {
     }
 
     @NonNull
-    public LiveData<List<CourseInfo>> getCourseInfoLiveData() {
+    LiveData<List<CourseInfo>> getCourseInfoLiveData() {
         return mCourseInfoLiveData;
     }
 
-    public void getCatalog() {
+    void getCatalog() {
         mLiveData = new FirebaseQueryLiveData(COURSE_CATALOG);
         addLiveDataSource();
     }
@@ -57,7 +57,7 @@ public class CatalogViewModel extends AndroidViewModel {
         });
     }
 
-    public void searchCourse(String query) {
+    void searchCourse(String query) {
         mLiveData = new FirebaseQueryLiveData(generateQuery(query));
         addLiveDataSource();
     }

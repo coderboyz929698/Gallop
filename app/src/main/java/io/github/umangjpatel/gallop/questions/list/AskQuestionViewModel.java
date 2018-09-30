@@ -7,7 +7,7 @@ class AskQuestionViewModel extends ViewModel {
 
     private String mLabel, mQuestion;
 
-    public void setLabel(String label) {
+    void setLabel(String label) {
         mLabel = label;
     }
 
@@ -15,7 +15,7 @@ class AskQuestionViewModel extends ViewModel {
         mQuestion = question;
     }
 
-    public void publishQuestion() {
+    void publishQuestion() {
         QuestionPostRepository.getInstance().addQuestion(mLabel, mQuestion);
     }
 }

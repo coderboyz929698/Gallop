@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -34,9 +36,9 @@ public class AskQuestionActivity extends AppCompatActivity {
 
     private void startPublishQuestion() {
         mAskQuestionViewModel
-                .setLabel(mAskQuestionBinding.questionLabelEditText.getText().toString());
+                .setLabel(Objects.requireNonNull(mAskQuestionBinding.questionLabelEditText.getText()).toString());
         mAskQuestionViewModel
-                .setQuestion(mAskQuestionBinding.questionContentEditText.getText().toString());
+                .setQuestion(Objects.requireNonNull(mAskQuestionBinding.questionContentEditText.getText()).toString());
         mAskQuestionViewModel.publishQuestion();
     }
 

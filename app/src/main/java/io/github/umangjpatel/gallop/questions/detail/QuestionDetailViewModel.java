@@ -70,12 +70,12 @@ public class QuestionDetailViewModel extends AndroidViewModel {
     }
 
     @NonNull
-    public LiveData<Question> getQuestionLiveData() {
+    LiveData<Question> getQuestionLiveData() {
         return mQuestionLiveData;
     }
 
     @NonNull
-    public LiveData<List<Answer>> getAnswersLiveData() {
+    LiveData<List<Answer>> getAnswersLiveData() {
         return mAnswersLiveData;
     }
 }

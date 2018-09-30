@@ -39,11 +39,11 @@ public class QuestionsListViewModel extends AndroidViewModel {
     }
 
     @NonNull
-    public LiveData<List<Question>> getQuestionsLiveData() {
+    LiveData<List<Question>> getQuestionsLiveData() {
         return mQuestionsLiveData;
     }
 
-    public void searchQuestion(String query) {
+    void searchQuestion(String query) {
         mLiveData = new FirebaseQueryLiveData(generateQuery(query));
         addLiveDataSource(false);
     }

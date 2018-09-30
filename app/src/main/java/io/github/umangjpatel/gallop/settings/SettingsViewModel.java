@@ -20,11 +20,11 @@ public class SettingsViewModel extends AndroidViewModel {
         mUserInfoRepository = UserInfoRepository.getInstance();
     }
 
-    public MutableLiveData<UserInfo> getUserInfoLiveData() {
+    MutableLiveData<UserInfo> getUserInfoLiveData() {
         return mUserInfoLiveData;
     }
 
-    public void fetchUserData(FirebaseUser currentUser) {
+    void fetchUserData(FirebaseUser currentUser) {
         mUserInfoLiveData.setValue(mUserInfoRepository.readUserFromDatabase(currentUser));
     }
 }
