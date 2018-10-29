@@ -42,7 +42,11 @@
             android:parentActivityName=".main.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppBarTheme" />
-        <activity android:name=".info.CourseInfoActivity"></activity>
+
+        <activity
+            android:name=".info.CourseInfoActivity"
+            android:parentActivityName=".main.MainActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -29,4 +29,6 @@
     <string name="question_content_hint">Write your question</string>
     <string name="publish_label">Publish</string>
     <string name="search_questions_hint">Search questions</string>
+    <string name="summary_course_info_label">Summary</string>
+    <string name="prerequisites_course_info_label">Prerequisites</string>
 </resources>
