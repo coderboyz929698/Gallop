@@ -19,7 +19,7 @@ import static androidx.appcompat.widget.SearchView.OnQueryTextListener;
 
 public class CatalogFragment extends Fragment {
 
-    private static final int EMPTY_COURSES = 0, LOADING_COURSES = 1, LOADED_COURSES = 2;
+    
 
     private FragmentCatalogBinding mCatalogBinding;
     private CatalogViewModel mCatalogViewModel;
